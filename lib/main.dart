@@ -11,7 +11,7 @@ class TideUiCopyApp extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         textTheme: TextTheme(
-          headline1: TextStyle(color: Colors.white, fontSize: 36.0, fontWeight: FontWeight.w400),
+          headline1: TextStyle(color: Colors.white, fontSize: 36.0, fontWeight: FontWeight.w500),
           headline2: TextStyle(color: Colors.white, fontSize: 48.0, fontWeight: FontWeight.w100),
           bodyText1: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w300),
         ),
@@ -47,9 +47,28 @@ class MainScreen extends StatelessWidget {
                       height: 32.0,
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 20.0),
+                      margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 2.0),
                       child: Row(children: [
-                        Text('Night', style: Theme.of(context).textTheme.headline1),
+                        Flexible(
+                          fit: FlexFit.tight,
+                          child: Text('Night', style: Theme.of(context).textTheme.headline1),
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.link,
+                            color: Colors.white,
+                          ),
+                          onPressed: () =>
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Icon Clicked'))),
+                        ),
+                        IconButton(
+                          icon: const Icon(
+                            Icons.multitrack_audio,
+                            color: Colors.white,
+                          ),
+                          onPressed: () =>
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Icon Clicked'))),
+                        ),
                       ]),
                     ),
                     Container(
