@@ -22,7 +22,13 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        child: Center(child: Text('Tide UI Copy App')),
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage('assets/images/sunset.jpeg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: null,
       ),
     );
   }
