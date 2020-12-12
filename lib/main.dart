@@ -12,8 +12,8 @@ class TideUiCopyApp extends StatelessWidget {
       theme: ThemeData(
         textTheme: TextTheme(
           headline1: TextStyle(color: Colors.white, fontSize: 36.0, fontWeight: FontWeight.w500),
-          headline2: TextStyle(color: Colors.white, fontSize: 48.0, fontWeight: FontWeight.w100),
-          bodyText1: TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w300),
+          headline2: TextStyle(color: Colors.white, fontSize: 40.0, fontWeight: FontWeight.w200),
+          bodyText1: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 14.0, fontWeight: FontWeight.w400),
         ),
       ),
       home: MainScreen(),
@@ -31,6 +31,7 @@ class MainScreen extends StatelessWidget {
         decoration: BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/tide.jpg'),
+            colorFilter: ColorFilter.mode(Colors.black.withOpacity(0.1), BlendMode.srcATop),
             fit: BoxFit.cover,
           ),
         ),
@@ -43,7 +44,7 @@ class MainScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     Container(
-                      color: Colors.pink.withAlpha(64),
+                      color: Colors.transparent, // Colors.pink.withOpacity(0.3),
                       height: 32.0,
                     ),
                     Container(
@@ -72,7 +73,7 @@ class MainScreen extends StatelessWidget {
                       ]),
                     ),
                     Container(
-                      color: Colors.pink.withAlpha(64),
+                      color: Colors.transparent, // Colors.pink.withOpacity(0.3),
                       height: 8.0,
                     ),
                     Container(
@@ -85,14 +86,16 @@ class MainScreen extends StatelessWidget {
                       ]),
                     ),
                     Container(
-                      color: Colors.pink.withAlpha(64),
+                      color: Colors.transparent, // Colors.pink.withOpacity(0.3),
                       height: 16.0,
                     ),
                     Container(
                       margin: EdgeInsets.symmetric(horizontal: 20.0),
-                      child: Row(children: [
-                        Text('Daily Tide', style: Theme.of(context).textTheme.bodyText1),
-                      ]),
+                      child: Banner(
+                        title: 'Daily Tide',
+                        description: 'Healthy Eating',
+                        icon: Icon(Icons.person, color: Colors.black),
+                      ),
                     ),
                   ],
                 ),
@@ -103,7 +106,7 @@ class MainScreen extends StatelessWidget {
               child: Container(
                 margin: EdgeInsets.only(bottom: screenPadding.bottom),
                 child: Container(
-                  color: Colors.pink.withAlpha(64),
+                  color: Colors.transparent, // Colors.pink.withOpacity(0.3),
                   height: 160.0,
                 ),
               ),
@@ -113,6 +116,46 @@ class MainScreen extends StatelessWidget {
               child: Container(
                 child: Text('Storm', style: Theme.of(context).textTheme.headline2),
               ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class Banner extends StatelessWidget {
+  Banner({this.title, this.description, this.icon});
+  final String title;
+  final String description;
+  final Icon icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      decoration: BoxDecoration(
+        color: Color.fromARGB(0xcc, 0xcc, 0xcc, 0xcc),
+        borderRadius: BorderRadius.all(Radius.circular(16.0)),
+      ),
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 16.0),
+        child: Row(
+          children: [
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(title, style: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: 12.0, fontWeight: FontWeight.w500)),
+                  Container(
+                    margin: EdgeInsets.only(top: 4.0),
+                    child: Text(description, style: TextStyle(color: Colors.white, fontSize: 18.0, fontWeight: FontWeight.w500)),
+                  )
+                ],
+              ),
+            ),
+            Container(
+                margin: const EdgeInsets.only(right: 8.0),
+                child: CircleAvatar(backgroundColor: Colors.white, child: icon),
             ),
           ],
         ),
